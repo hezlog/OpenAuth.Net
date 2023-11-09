@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using SqlSugar;
+﻿using SqlSugar;
 
 namespace OpenAuth.Repository
 {

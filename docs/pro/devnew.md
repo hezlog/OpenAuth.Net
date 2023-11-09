@@ -2,9 +2,11 @@
 
 ## 术语解释
 
+在添加新功能之前，需要先了解OpenAuth.Net生成代码时的两个概念：动态头部和固定头部
+
 #### 动态头部
 
-如果启用动态头部，表示前端渲染列表（或表单）时，列表的列定义是从后端返回。常见的前端代码如下：
+如果启用动态头部，表示前端渲染列表（或表单）时，列表的列定义是从后端返回。通常用于控制前端字段显示权限。配合后端：[权限控制/字段权限](http://doc.openauth.net.cn/pro/datapropertyrule.html#%E5%AD%97%E6%AE%B5%E6%9D%83%E9%99%90) 如：常见的前端代码如下：
 ```html
   <auth-table  ref="mainTable" :table-fields="headerList"></auth-table>
 ```
@@ -19,7 +21,9 @@ getList() {
 
 ```
 
-否则生成的前端列为固定的头部。如下：
+#### 固定头部
+
+如果不是上面的情况，则生成的前端列为固定的头部。如下：
 
 ```html
 
@@ -96,11 +100,24 @@ create table stock
 
 如果存在子表，也进行相同的操作。即选中刚刚添加的`StockDetail`表，依次点击【生成实体】【生成业务代码】【生成vue页面】;
 
-## 配置模块地址
+成功后生成的后端.Net代码位置如下：
 
-运行系统，使用System账号登录系统，在【模块管理】中，添加“仓储管理”模块，如下图：
+OpenAuth.Repository\Domain\Stock.cs
+OpenAuth.App\StockApp\StockApp.cs
+OpenAuth.App\StockApp\Request\AddOrUpdateStockReq.cs
+OpenAuth.App\StockApp\Request\QueryStockListReq.cs
+OpenAuth.WebApi\Controllers\StocksController.cs
 
-![20211207003212](http://img.openauth.net.cn/20211207003212.png)
+并且会在OpenAuth.Repository\OpenAuthDBContext.cs中自动添加：
+
+```
+ public virtual DbSet<Stock> Stocks { get; set; }
+```
+
+
+前端Vue代码：
+src\api\stocks.js
+src\views\stocks\index.vue
 
 ::: warning 注意
 完成以上步骤后，请重启OpenAuth.WebApi，用来重新加载刚刚生成的后台代码
@@ -108,7 +125,13 @@ create table stock
 子表不需要添加模块
 :::
 
-成功后可以进入新加的仓储管理界面：
+## 配置模块地址
+
+经过以上步骤，重启系统后，使用System账号重新登录，在【模块管理】中，添加“仓储管理”模块，如下图：
+
+![20211207003212](http://img.openauth.net.cn/20211207003212.png)
+
+这样就可以访问刚刚新加的仓储管理功能，到此就完成了添加一个新模块功能：
 
 ![20211208011431](http://img.openauth.net.cn/20211208011431.png)
 

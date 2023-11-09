@@ -4,7 +4,7 @@
 
 gitee上面两个版本，仅SDK的版本不同，代码完全相同。其中：
 
-* [OpenAuth.Net](https://gitee.com/dotnetchina/OpenAuth.Net) 的SDK版本为.Net 5/6/7..，推荐使用该版本
+* [OpenAuth.Net](https://gitee.com/dotnetchina/OpenAuth.Net) 默认SDK版本为.Net 6，推荐使用该版本。如果你使用vs2019作为开发工具，请注意查看：[VS2019打开6.0及以后版本](http://doc.openauth.net.cn/core/faq.html#vs2019%E6%89%93%E5%BC%806-0%E5%8F%8A%E4%BB%A5%E5%90%8E%E7%89%88%E6%9C%AC)
 
 * [OpenAuth.Core](https://gitee.com/yubaolee/OpenAuth.Core) 的SDK版本为.Net Core 3.1.100，历史原因暂且保留，未来的某天会关闭它
 
@@ -34,7 +34,7 @@ OpenAuth.Net文件夹结构及功能说明如下：
  ┣ 📜.gitattributes
  ┣ 📜.gitignore
  ┣ 📜LICENSE
- ┣ 📜OpenAuth.Core.sln    //解决方案
+ ┣ 📜OpenAuth.Net.sln    //解决方案
  ┗ 📜README.md
 ```
 
@@ -82,7 +82,7 @@ OpenAuth.Repository -> OpenAuthDB : 仓储层进行数据库操作
 
 ## 打开项目
 
-使用Visual Studio或Rider打开 `OpenAuth.Net.sln`
+使用Visual Studio 2022或Rider打开 `OpenAuth.Net.sln`
 ::: tip 提示
 如果开发使用的电脑安装有多个版本的SDK（如同时有.net core 3.1 和.Net 5/6/7..），可以在根目录新建一个`global.json`文件来指定.net版本，文件内容如下：
 

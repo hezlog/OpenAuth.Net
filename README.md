@@ -1,8 +1,10 @@
+🔥.Net权限管理及快速开发框架、最好用的权限工作流系统。源于Martin Fowler企业级应用开发思想及最新技术组合（SqlSugar、EF、Quartz、AutoFac、WebAPI、Swagger、Mock、NUnit、Vue2/3、Element-ui/plus、IdentityServer等）。核心模块包括：角色授权、代码生成、智能打印、表单设计、工作流、定时任务等。架构易扩展，是中小企业的首选。
+
 ## ❤❤❤郑重声明❤❤❤
 
-主分支main运行环境为 **.Net SDK 5.0/6.0/7.0**
+主分支main运行环境默认为.Net SDK 6.0，如果你使用vs2019作为开发工具，请注意查看：[VS2019打开6.0及以后版本](http://doc.openauth.net.cn/core/faq.html#vs2019%E6%89%93%E5%BC%806-0%E5%8F%8A%E4%BB%A5%E5%90%8E%E7%89%88%E6%9C%AC)
 
-需要.Net 4.0/4.5开发环境的同学请查看本项目4.0分支
+需要.Net SDK 4.0/4.5开发环境的同学请查看本项目4.0分支，已停止维护
 
 使用.Net Core 2.1--3.1的请看：
 
@@ -19,26 +21,31 @@
 
 **官方文档**  http://doc.openauth.net.cn 
 
-![](https://img.shields.io/badge/release-2.0-blue)
+
+![](https://img.shields.io/badge/release-6.0-blue)
+![](https://img.shields.io/badge/SqlSugar-5.1.4-blue)
 ![](https://img.shields.io/badge/IdentityServer4-3.0.1-blue)
 ![](https://img.shields.io/badge/quartz-3.0.7-blue)
-![](https://img.shields.io/badge/Autofac-5.1.2-blue)
-![](https://img.shields.io/badge/NUnit-3.12-blue)
+![](https://img.shields.io/badge/Autofac-5.2-blue)
+![](https://img.shields.io/badge/NUnit-3.13.1-blue)
 ![](https://img.shields.io/badge/SwaggerUI-OAS%203.0-blue)
 ![](https://img.shields.io/badge/Moq-4.13-blue)
-![](https://img.shields.io/badge/log4net-2.0.8-blue)
+![](https://img.shields.io/badge/log4net-2.0.12-blue)
 
 ![](https://img.shields.io/badge/vue-2.6.10-brightgreen)
+![](https://img.shields.io/badge/vue-3.3.4-brightgreen)
+![](https://img.shields.io/badge/vite-4.4.9-brightgreen)
 ![](https://img.shields.io/badge/element--ui-2.10.1-brightgreen)
+![](https://img.shields.io/badge/element--plus-2.3.9-brightgreen)
 ![](https://img.shields.io/badge/node-%3E%3D4.0-brightgreen)
-![](https://img.shields.io/badge/npm-3.0.0-brightgreen)
-![](https://img.shields.io/badge/layui-2.5.6-brightgreen)
+![](https://img.shields.io/badge/npm-9.7.1-brightgreen)
+![](https://img.shields.io/badge/layui-2.8.6-brightgreen)
 
 
 
 ## 关于OpenAuth.Net企业版/高级版的说明：
 
-目前OpenAuth.Net以全部开源的方式向大众开放,对于有经验的开发者，官方文档足以满足日常开发。为了能让项目走的更远，特推出基于vue + element UI 的单页面应用程序，即企业版/高级版OpenAuth.Pro
+目前OpenAuth.Net以全部开源的方式向大众开放,对于有经验的开发者，官方文档足以满足日常开发。为了能让项目走的更远，特推出基于vue2 + element-ui /vue3 + element-plus的单页面应用程序，即企业版/高级版OpenAuth.Pro
 
 **该版本是一套后端基于OpenAuth.WebAPI接口，前端基于vue-element-admin，采用VUE全家桶（VUE+VUEX+VUE-ROUTER）单页面SPA开发的管理后台 [点击这里查看效果](http://demo.openauth.net.cn:1803)**
 
@@ -48,7 +55,9 @@
 
 效果如下：
 ![API启动效果图](https://images.gitee.com/uploads/images/2021/0422/012037_ec51b7e6_362401.png "api启动.png")
-![输入图片说明](snapshot/form.png)
+![打印方案设计](snapshot/sysprinterplan.png)
+![打印方案挂载业务系统](snapshot/sysprinterplan2.png)
+![拖拽表单](snapshot/form.png)
 ![](https://images.gitee.com/uploads/images/2021/0128/225024_57595ce9_362401.png "flow.png")
 
 ## 官方QQ交流群  
@@ -64,7 +73,7 @@
 
 ## 演示直达
 
-* 企业版/高级版演示地址： http://demo.openauth.net.cn:1803
+* 企业版Vue2演示地址： http://demo.openauth.net.cn:1803
 
 * 企业版H5演示地址（请使用浏览器移动模式或直接用手机打开）： http://demo.openauth.net.cn:1804 
 
@@ -72,7 +81,9 @@
 
 ## 核心看点
 
-* 支持.Net 4.0/4.5(已停止维护)及最新的.Net 5.0
+* 支持.Net 4.0/4.5(已停止维护)及最新的.Net 5.0/6.0/7.0/...
+  
+* 同时支持EntityFramework、SqlSugar两款最流行的ORM框架
 
 * 超强的自定义权限控制功能，可灵活配置用户、角色可访问的数据权限。请参考：[通用权限设计与实现](https://www.cnblogs.com/yubaolee/p/DataPrivilege.html)
 
@@ -92,7 +103,7 @@
 
 * 建立三方对接规范，已有系统可以无缝对接流程引擎
 
-* 前端采用 vue + layui + elementUI + ztree + gooflow + leipiformdesign
+* 前端采用 vue + layui + element-ui + ztree + gooflow + leipiformdesign
 
 * 后端采用 .net core +EF core+ autofac + quartz +IdentityServer4 + nunit + swagger
 

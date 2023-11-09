@@ -79,6 +79,18 @@ namespace OpenAuth.App
         }
 
         #endregion 用户/角色分配模块
+        
+        /// <summary>
+        /// 获取模块的打印方案列表
+        /// </summary>
+        /// <param name="moduleId">模块id</param>
+        /// <returns></returns>
+        public IEnumerable<SysPrinterPlan> LoadPrinterPlans(string moduleId)
+        {
+            var planids = _revelanceApp.Get(Define.MODULEPRINTERPLAN, true, moduleId);
+            var query = UnitWork.Find<SysPrinterPlan>(u => planids.Contains(u.Id));
+            return query;
+        }
 
 
         #region 菜单操作
@@ -178,5 +190,7 @@ namespace OpenAuth.App
         {
             _revelanceApp = app;
         }
+
+        
     }
 }

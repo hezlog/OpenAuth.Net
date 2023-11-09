@@ -100,75 +100,22 @@ namespace OpenAuth.Mvc
             services.AddHttpClient();
             
             services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(Configuration["DataProtection"]));
+            
+            var sqlsugarTypes = UtilMethods.EnumToDictionary<SqlSugar.DbType>();
+            var dbType = sqlsugarTypes.FirstOrDefault(it =>
+                dbtypes.ToDictionary(u => u.Key, v => v.Value.ToLower()).ContainsValue(it.Key));
 
             services.AddScoped<ISqlSugarClient>(s =>
             {
-
-                SqlSugarClient sqlSugar;
-                if (dbtypes.ContainsValue(Define.DBTYPE_SQLSERVER))
+                var sqlSugar = new SqlSugarClient(new ConnectionConfig()
                 {
-                    sqlSugar = new SqlSugarClient(new ConnectionConfig()
-                    {
-                        DbType = SqlSugar.DbType.SqlServer,
-                        ConnectionString = connectionString,
-                        IsAutoCloseConnection = true,
-                    }, db =>
-                    {
-                        db.Aop.OnLogExecuting = (sql, pars) =>
-                        {
-                            logger.LogInformation(sql);
-                        };
-                    });
-                }
-                else if (dbtypes.ContainsValue(Define.DBTYPE_MYSQL))  //mysql
-                {
-                    sqlSugar = new SqlSugarClient(new ConnectionConfig()
-                    {
-                        DbType = SqlSugar.DbType.MySql,
-                        ConnectionString = connectionString,
-                        IsAutoCloseConnection = true,
-                    }, db =>
-                    {
-                        db.Aop.OnLogExecuting = (sql, pars) =>
-                        {
-                            logger.LogInformation(sql);
-                        };
-                    });
-                }
-                else if (dbtypes.ContainsValue(Define.DBTYPE_PostgreSQL))  //PostgreSQL
-                {
-                    sqlSugar = new SqlSugarClient(new ConnectionConfig()
-                    {
-                        DbType = SqlSugar.DbType.PostgreSQL,
-                        ConnectionString = connectionString,
-                        IsAutoCloseConnection = true,
-                    }, db =>
-                    {
-                        db.Aop.OnLogExecuting = (sql, pars) =>
-                        {
-                            logger.LogInformation(sql);
-                        };
-                    });
-                }
-                else
-                {
-                    sqlSugar = new SqlSugarClient(new ConnectionConfig()
-                    {
-                        DbType = SqlSugar.DbType.Oracle,
-                        ConnectionString = connectionString,
-                        IsAutoCloseConnection = true,
-                    }, db =>
-                    {
-                        db.Aop.OnLogExecuting = (sql, pars) =>
-                        {
-                            logger.LogInformation(sql);
-                        };
-                    });
-                }
-
+                    DbType = dbType.Value,
+                    ConnectionString = connectionString,
+                    IsAutoCloseConnection = true,
+                }, db => { db.Aop.OnLogExecuting = (sql, pars) => { logger.LogInformation(sql); }; });
                 return sqlSugar;
             });
-
+            
             //设置定时启动的任务
             services.AddHostedService<QuartzService>();
           

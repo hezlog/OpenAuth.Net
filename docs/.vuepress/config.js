@@ -1,7 +1,7 @@
 /*
  * @Author: yubaolee <yubaolee@163.com> | ahfu~ <954478625@qq.com>
  * @Date: 2023-08-12 10:48:24
- * @LastEditTime: 2023-08-27 19:45:48
+ * @LastEditTime: 2023-10-02 11:14:18
  * @Description: 
  * @
  * @Copyright (c) 2023 by yubaolee | ahfu~ , All Rights Reserved. 
@@ -70,6 +70,11 @@ module.exports = {
             text: 'Variant Form - 可视化低代码表单',
             link: 'https://www.vform666.com/',
             target: '_blank'
+          },
+          {
+            text: 'SqlSugar',
+            link: 'https://www.donet5.com/',
+            target: '_blank'
           }
         ],
       },
@@ -88,7 +93,7 @@ module.exports = {
           title: '权限控制', // 必要的
           sidebarDepth: 1, // 可选的, 默认值是 1
           collapsable: false,
-          children: ['apiauth', 'logininfo', 'dataprivilege', 'datapropertyrule'],
+          children: ['moduleauth','apiauth', 'logininfo', 'dataprivilege', 'datapropertyrule'],
         },
         'form',
         {
@@ -124,6 +129,7 @@ module.exports = {
           children: ['router','openurl'],
         },
         'datapropertyrule',
+        'printerplan',
         {
           title: '表单设计', // 必要的
           sidebarDepth: 1, // 可选的, 默认值是 1
